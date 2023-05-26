@@ -11,6 +11,7 @@ class Home extends Component {
     categories: [],
     productsCategory: [],
     opcoes: 'busca',
+    zeroProduct: false,
   };
 
   async componentDidMount() {
@@ -23,16 +24,26 @@ class Home extends Component {
     const categoryId = target.id;
     const products = await getProductsFromCategoryAndQuery(categoryId, '');
     this.setState({ productsCategory: products.results, opcoes: 'categoria' });
+    if (!products) {
+      this.setState({ zeroProduct: true });
+    } else {
+      this.setState({ zeroProduct: false });
+    }
   };
 
   // função responsavel por fazer requisição da api com valor do capo de busca e seta esse valor apenas dos produtos no state
   renderProduct = async () => {
     const { inputName } = this.state;
-    const productsArray = await getProductsFromCategoryAndQuery(null, inputName);
+    const products = await getProductsFromCategoryAndQuery(null, inputName);
     this.setState({
-      products: productsArray.results,
+      products: products.results,
       opcoes: 'busca',
     });
+    if (products.results.length === 0) {
+      this.setState({ zeroProduct: true });
+    } else {
+      this.setState({ zeroProduct: false });
+    }
   };
 
   // função responsavel por seta no state o valor da barra de pesquisa de produtos
@@ -44,7 +55,7 @@ class Home extends Component {
   };
 
   render() {
-    const { products, categories, productsCategory, opcoes } = this.state;
+    const { products, categories, productsCategory, opcoes, zeroProduct } = this.state;
 
     return (
       <div>
@@ -99,7 +110,7 @@ class Home extends Component {
           }
         </div>
         {
-          products.length === 0
+          products.length === 0 && zeroProduct
             ? <p>Nenhum produto foi encontrado</p>
             : (
               opcoes === 'busca'
