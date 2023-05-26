@@ -15,7 +15,6 @@ class App extends Component {
           <Route path="/carrinho" component={ Carrinho } />
           <Route path="/details/:id" component={ Details } />
           <Route path="/checkout" component={ Checkout } />
-
         </Switch>
       </div>
     );
