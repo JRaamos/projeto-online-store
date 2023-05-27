@@ -40,17 +40,31 @@ class ProductCard extends Component {
         data-testid="product"
         className="card"
       >
-        <div>
+        <div className="div">
           <Link
             data-testid="product-detail-link"
             to={ `/details/${id}` }
+            className="div"
           >
-            <p>{name}</p>
-            <img src={ img } alt={ name } />
-            <p>{price}</p>
+            <p
+              className="link-body-emphasis link-offset-2
+               link-underline-opacity-25 link-underline-opacity-75-hover"
+            >
+              {name}
+
+            </p>
+
+            <img
+              className="img-product"
+              src={ img }
+              alt={ name }
+            />
           </Link>
+          <p>{`R$ ${price.toFixed(2)}`}</p>
+
           <button
             data-testid="product-add-to-cart"
+            className="btn btn-outline-primary"
             onClick={ () => this.handleAddToCartAndStorage(product) }
           >
             Adicionar ao Carrinho

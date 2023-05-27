@@ -63,20 +63,20 @@ class Home extends Component {
 
     return (
       <div className="home-contain">
+
         <form
           className="form-contain"
           onSubmit={ (event) => {
             event.preventDefault();
           } }
         >
-          <p data-testid="home-initial-message">
-            Digite algum termo de pesquisa ou escolha uma categoria.
-          </p>
           <div>
             <label>
               <input
-                className="input-form"
+                className="form-control"
+                id="formGroupExampleInput"
                 type="text"
+                placeholder="Digite o nome de um produto"
                 data-testid="query-input"
                 onChange={ this.handleChange }
               />
@@ -84,15 +84,27 @@ class Home extends Component {
 
             <button
               data-testid="query-button"
+              className="btn-form"
               type="submit"
               onClick={ this.renderProduct }
             >
               Buscar
             </button>
+
           </div>
-          <Link to="/carrinho" data-testid="shopping-cart-button">
-            <button> Carrinho </button>
-          </Link>
+          <div
+            className="btn-group"
+            role="group"
+            aria-label="Basic outlined example"
+          >
+            <Link to="/carrinho" data-testid="shopping-cart-button">
+              <button
+                className="btn btn-outline-primary"
+              >
+                &#128722;
+              </button>
+            </Link>
+          </div>
         </form>
         <main className="main">
           <div className="categorias-contain">
