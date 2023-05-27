@@ -7,6 +7,7 @@ import {
 import ProductCard from '../components/ProductCard';
 import Categorias from '../components/Categorias';
 import './Home.css';
+import Loading from '../components/Loading';
 
 class Home extends Component {
   state = {
@@ -16,6 +17,7 @@ class Home extends Component {
     productsCategory: [],
     opcoes: 'busca',
     zeroProduct: false,
+    loading: false,
   };
 
   async componentDidMount() {
@@ -26,7 +28,10 @@ class Home extends Component {
   // função responsavel por fazer requisição a api e seta no estado as categorias de produtos
   getProducts = async ({ target }) => {
     const categoryId = target.id;
+
+    this.setState({ loading: true });
     const products = await getProductsFromCategoryAndQuery(categoryId, '');
+    this.setState({ loading: false });
     this.setState({ productsCategory: products.results, opcoes: 'categoria' });
     if (!products) {
       this.setState({ zeroProduct: true });
@@ -38,7 +43,9 @@ class Home extends Component {
   // função responsavel por fazer requisição da api com valor do capo de busca e seta esse valor apenas dos produtos no state
   renderProduct = async () => {
     const { inputName } = this.state;
+    this.setState({ loading: true });
     const products = await getProductsFromCategoryAndQuery(null, inputName);
+    this.setState({ loading: false });
     this.setState({
       products: products.results,
       opcoes: 'busca',
@@ -59,7 +66,8 @@ class Home extends Component {
   };
 
   render() {
-    const { products, categories, productsCategory, opcoes, zeroProduct } = this.state;
+    const { products, categories, productsCategory,
+      opcoes, zeroProduct, loading } = this.state;
 
     return (
       <div className="home-contain">
@@ -118,7 +126,17 @@ class Home extends Component {
             ))}
           </div>
           <div className="product-contain">
-            {opcoes === 'categoria'
+            {
+              loading
+                && (
+                  <div className="loading-home">
+                    <Loading />
+                  </div>
+                )
+
+            }
+            {
+              opcoes === 'categoria' && !loading
             && productsCategory.map((product) => (
               <ProductCard
                 key={ product.id }
@@ -128,11 +146,12 @@ class Home extends Component {
                 id={ product.id }
                 product={ product }
               />
-            ))}
+            ))
+            }
             {products.length === 0 && zeroProduct ? (
               <p>Nenhum produto foi encontrado</p>
             ) : (
-              opcoes === 'busca'
+              opcoes === 'busca' && !loading
           && products.map((product) => (
             <ProductCard
               key={ product.id }
