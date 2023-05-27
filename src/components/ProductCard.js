@@ -46,19 +46,18 @@ class ProductCard extends Component {
             to={ `/details/${id}` }
             className="div"
           >
-            <p
-              className="link-body-emphasis link-offset-2
-               link-underline-opacity-25 link-underline-opacity-75-hover"
-            >
-              {name}
-
-            </p>
 
             <img
               className="img-product"
               src={ img }
               alt={ name }
             />
+            <p
+              className="link-body-emphasis link-offset-2
+               link-underline-opacity-25 link-underline-opacity-75-hover"
+            >
+              {name}
+            </p>
           </Link>
           <p>{`R$ ${price.toFixed(2)}`}</p>
 
