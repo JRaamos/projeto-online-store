@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
+import './Categorias.css';
 
 class Categorias extends Component {
   render() {
@@ -9,14 +10,18 @@ class Categorias extends Component {
         <label
           data-testid="category"
           htmlFor={ id }
+
         >
-          <input
-            onChange={ getProducts }
-            name="category"
-            type="radio"
-            id={ id }
-          />
-          {name}
+          <div className="categorias-div">
+            <input
+              style={ { display: 'none' } }
+              onChange={ getProducts }
+              name="category"
+              type="radio"
+              id={ id }
+            />
+            {name}
+          </div>
         </label>
       </div>
     );

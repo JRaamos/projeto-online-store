@@ -1,0 +1,15 @@
+.categorias-contain {
+  align-items: center;
+  border: solid 1px black;
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+}
+
+.categorias-div {
+  border: solid 1px black;
+  display: flex;
+  justify-content: center;
+  margin: 8px;
+  width: 250px;
+}

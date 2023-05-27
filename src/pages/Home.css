@@ -1,0 +1,23 @@
+.home-contain {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.form-contain {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+}
+
+.input-form {
+  margin: 0 3px 20px;
+  width: 400px;
+}
+
+.main {
+  display: flex;
+  justify-content: space-between;
+}

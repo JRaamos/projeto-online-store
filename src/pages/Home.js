@@ -1,8 +1,12 @@
 import { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
+import {
+  getCategories,
+  getProductsFromCategoryAndQuery,
+} from '../services/api';
 import ProductCard from '../components/ProductCard';
 import Categorias from '../components/Categorias';
+import './Home.css';
 
 class Home extends Component {
   state = {
@@ -58,8 +62,9 @@ class Home extends Component {
     const { products, categories, productsCategory, opcoes, zeroProduct } = this.state;
 
     return (
-      <div>
+      <div className="home-contain">
         <form
+          className="form-contain"
           onSubmit={ (event) => {
             event.preventDefault();
           } }
@@ -67,68 +72,70 @@ class Home extends Component {
           <p data-testid="home-initial-message">
             Digite algum termo de pesquisa ou escolha uma categoria.
           </p>
-          <label>
-            <input
-              type="text"
-              data-testid="query-input"
-              onChange={ this.handleChange }
-            />
-          </label>
+          <div>
+            <label>
+              <input
+                className="input-form"
+                type="text"
+                data-testid="query-input"
+                onChange={ this.handleChange }
+              />
+            </label>
 
-          <button
-            data-testid="query-button"
-            type="submit"
-            onClick={ this.renderProduct }
-          >
-            Buscar
-          </button>
+            <button
+              data-testid="query-button"
+              type="submit"
+              onClick={ this.renderProduct }
+            >
+              Buscar
+            </button>
+          </div>
+          <Link to="/carrinho" data-testid="shopping-cart-button">
+            <button> Carrinho </button>
+          </Link>
         </form>
-
-        {
-          categories.map(({ name, id }) => (
-            <Categorias
-              key={ id }
-              name={ name }
-              id={ id }
-              getProducts={ this.getProducts }
+        <main className="main">
+          <div className="categorias-contain">
+            {categories.map(({ name, id }) => (
+              <Categorias
+                key={ id }
+                name={ name }
+                id={ id }
+                getProducts={ this.getProducts }
+              />
+            ))}
+          </div>
+          <div className="product-contain">
+            {opcoes === 'categoria'
+            && productsCategory.map((product) => (
+              <ProductCard
+                key={ product.id }
+                img={ product.thumbnail }
+                name={ product.title }
+                price={ product.price }
+                id={ product.id }
+                product={ product }
+              />
+            ))}
+            {products.length === 0 && zeroProduct ? (
+              <p>Nenhum produto foi encontrado</p>
+            ) : (
+              opcoes === 'busca'
+          && products.map((product) => (
+            <ProductCard
+              key={ product.id }
+              img={ product.thumbnail }
+              name={ product.title }
+              price={ product.price }
+              id={ product.id }
+              product={ product }
             />
           ))
-        }
-        <div>
-          {
-            opcoes === 'categoria'
-             && productsCategory.map((product) => (
-               <ProductCard
-                 key={ product.id }
-                 img={ product.thumbnail }
-                 name={ product.title }
-                 price={ product.price }
-                 id={ product.id }
-                 product={ product }
-               />
-             ))
-          }
-        </div>
-        {
-          products.length === 0 && zeroProduct
-            ? <p>Nenhum produto foi encontrado</p>
-            : (
-              opcoes === 'busca'
-              && products.map((product) => (
-                <ProductCard
-                  key={ product.id }
-                  img={ product.thumbnail }
-                  name={ product.title }
-                  price={ product.price }
-                  id={ product.id }
-                  product={ product }
-                />
-              ))
-            )
-        }
-        <Link to="/carrinho" data-testid="shopping-cart-button">
-          <button> Carrinho </button>
-        </Link>
+            )}
+
+          </div>
+
+        </main>
       </div>
     );
   }

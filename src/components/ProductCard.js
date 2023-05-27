@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import './ProductCard.css';
 
 class ProductCard extends Component {
   // função responsável por adicionar o produto no carrinho de compras
@@ -35,21 +36,26 @@ class ProductCard extends Component {
     const { img, name, price, id, product } = this.props;
     return (
 
-      <div data-testid="product">
-        <Link
-          data-testid="product-detail-link"
-          to={ `/details/${id}` }
-        >
-          <h3>{name}</h3>
-          <img src={ img } alt={ name } />
-          <p>{price}</p>
-        </Link>
-        <button
-          data-testid="product-add-to-cart"
-          onClick={ () => this.handleAddToCartAndStorage(product) }
-        >
-          Adicionar ao Carrinho
-        </button>
+      <div
+        data-testid="product"
+        className="card"
+      >
+        <div>
+          <Link
+            data-testid="product-detail-link"
+            to={ `/details/${id}` }
+          >
+            <p>{name}</p>
+            <img src={ img } alt={ name } />
+            <p>{price}</p>
+          </Link>
+          <button
+            data-testid="product-add-to-cart"
+            onClick={ () => this.handleAddToCartAndStorage(product) }
+          >
+            Adicionar ao Carrinho
+          </button>
+        </div>
       </div>
 
     );
