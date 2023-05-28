@@ -2,17 +2,21 @@
   align-items: center;
   display: flex;
   flex-direction: column;
+  padding: 0  85px;
   width: 300px;
+
 }
 
 .categorias-div {
   background-color: rgb(242, 246, 250);
   border-radius: 15px;
+  box-shadow: 1px 1px 7px black;
   display: flex;
   height: 30px;
   justify-content: center;
   margin: 5px;
   width: 250px;
+
 }
 
 .categorias-div:hover {

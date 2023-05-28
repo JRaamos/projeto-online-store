@@ -1,5 +1,6 @@
 .card {
   border-radius: 7px;
+  box-shadow: 1px 1px 10px black;
   display: flex;
   flex-direction: column;
   height: 95%;
@@ -12,7 +13,7 @@
 
 .product-contain {
   display: grid;
-  grid-template-columns: repeat(3, 33%);
+  grid-template-columns: repeat(5, 20%);
   width: 90%;
 }
 
@@ -23,7 +24,8 @@
 }
 
 .btn-outline-primary {
-  color: black;
+  color: rgb(16, 16, 16);
+
 }
 
 .img-product {
