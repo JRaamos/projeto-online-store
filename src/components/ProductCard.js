@@ -30,10 +30,18 @@ class ProductCard extends Component {
     } else {
       localStorage.setItem('cartItems', JSON.stringify([{ ...product, quantidade: 1 }]));
     }
+    this.handleNumberCarrinho();
+  };
+
+  handleNumberCarrinho = () => {
+    let number = 0;
+    const prevStorage = JSON.parse(localStorage.getItem('cartItems'));
+    prevStorage.forEach(({ quantidade }) => { number += quantidade; });
+    localStorage.setItem('numero', JSON.stringify(number));
   };
 
   render() {
-    const { img, name, price, id, product } = this.props;
+    const { img, name, price, id, product, numberCarrinho } = this.props;
     return (
 
       <div
@@ -62,9 +70,13 @@ class ProductCard extends Component {
           <p>{`R$ ${price.toFixed(2)}`}</p>
 
           <button
+            type="submit"
             data-testid="product-add-to-cart"
-            className="btn btn-outline-primary"
-            onClick={ () => this.handleAddToCartAndStorage(product) }
+            className="button-product"
+            onClick={ () => {
+              numberCarrinho();
+              this.handleAddToCartAndStorage(product);
+            } }
           >
             Adicionar ao Carrinho
           </button>
@@ -79,6 +91,7 @@ ProductCard.propTypes = {
   img: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
+  numberCarrinho: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
   product: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired })),

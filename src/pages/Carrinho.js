@@ -16,13 +16,10 @@ class Carrinho extends Component {
 
   handleClick = (event) => {
     const { innerHTML, id } = event.target;
-
     if (innerHTML === '+') {
       const prevStorage = JSON.parse(localStorage.getItem('cartItems'));
       const productToIncrement = prevStorage.find((product) => product.id === id);
-
       productToIncrement.quantidade += 1;
-
       if (productToIncrement.quantidade > 1) {
         this.setState({
           disabled: false,
@@ -32,17 +29,15 @@ class Carrinho extends Component {
           disabled: true,
         });
       }
-
       localStorage.setItem('cartItems', JSON.stringify(prevStorage));
       const products = JSON.parse(localStorage.getItem('cartItems'));
       this.setState({ ids: products });
+      this.handleNumberCarrinho();
     }
     if (innerHTML === '-') {
       const prevStorage = JSON.parse(localStorage.getItem('cartItems'));
       const productToIncrement = prevStorage.find((product) => product.id === id);
-
       productToIncrement.quantidade -= 1;
-
       if (productToIncrement.quantidade > 1) {
         this.setState({
           disabled: false,
@@ -55,6 +50,7 @@ class Carrinho extends Component {
       localStorage.setItem('cartItems', JSON.stringify(prevStorage));
       const products = JSON.parse(localStorage.getItem('cartItems'));
       this.setState({ ids: products });
+      this.handleNumberCarrinhoRemoveUm();
     }
     if (innerHTML === 'Remover') {
       const prevStorage = JSON.parse(localStorage.getItem('cartItems'));
@@ -64,7 +60,22 @@ class Carrinho extends Component {
 
       const products = JSON.parse(localStorage.getItem('cartItems'));
       this.setState({ ids: products });
+      this.handleNumberCarrinho();
     }
+  };
+
+  handleNumberCarrinhoRemoveUm = () => {
+    let number = 0;
+    const numero = JSON.parse(localStorage.getItem('numero'));
+    number += (numero - 1);
+    localStorage.setItem('numero', JSON.stringify(number));
+  };
+
+  handleNumberCarrinho = () => {
+    let number = 0;
+    const prevStorage = JSON.parse(localStorage.getItem('cartItems'));
+    prevStorage.forEach(({ quantidade }) => { number += quantidade; });
+    localStorage.setItem('numero', JSON.stringify(number));
   };
 
   render() {
@@ -109,6 +120,7 @@ class Carrinho extends Component {
                       id={ product.id }
                       data-testid="remove-product"
                       onClick={ this.handleClick }
+
                     >
                       Remover
                     </button>

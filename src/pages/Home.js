@@ -18,11 +18,13 @@ class Home extends Component {
     opcoes: 'busca',
     zeroProduct: false,
     loading: false,
+    numeroCarrinho: 0,
   };
 
   async componentDidMount() {
     const categories = await getCategories();
     this.setState({ categories });
+    this.numberCarrinho();
   }
 
   // função responsavel por fazer requisição a api e seta no estado as categorias de produtos
@@ -65,9 +67,14 @@ class Home extends Component {
     });
   };
 
+  numberCarrinho = () => {
+    const numero = JSON.parse(localStorage.getItem('numero'));
+    this.setState({ numeroCarrinho: numero });
+  };
+
   render() {
     const { products, categories, productsCategory,
-      opcoes, zeroProduct, loading } = this.state;
+      opcoes, zeroProduct, loading, inputName, numeroCarrinho } = this.state;
 
     return (
       <div className="home-contain">
@@ -95,8 +102,9 @@ class Home extends Component {
               className="btn-form"
               type="submit"
               onClick={ this.renderProduct }
+              disabled={ inputName === '' }
             >
-              Buscar
+              🔍
             </button>
 
           </div>
@@ -106,16 +114,21 @@ class Home extends Component {
             aria-label="Basic outlined example"
           >
             <Link to="/carrinho" data-testid="shopping-cart-button">
-              <button
-                className="btn btn-outline-primary"
-              >
+
+              <div className="carrinho-numero">
                 &#128722;
-              </button>
+                {' '}
+                {numeroCarrinho}
+
+              </div>
             </Link>
           </div>
         </form>
         <main className="main">
           <div className="categorias-contain">
+            <h3>
+              Categorias:
+            </h3>
             {categories.map(({ name, id }) => (
               <Categorias
                 key={ id }
@@ -145,6 +158,7 @@ class Home extends Component {
                 price={ product.price }
                 id={ product.id }
                 product={ product }
+                numberCarrinho={ this.numberCarrinho }
               />
             ))
             }
@@ -160,6 +174,8 @@ class Home extends Component {
               price={ product.price }
               id={ product.id }
               product={ product }
+              numberCarrinho={ this.numberCarrinho }
+
             />
           ))
             )}
