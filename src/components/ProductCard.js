@@ -30,7 +30,6 @@ class ProductCard extends Component {
     } else {
       localStorage.setItem('cartItems', JSON.stringify([{ ...product, quantidade: 1 }]));
     }
-    this.handleNumberCarrinho();
   };
 
   handleNumberCarrinho = () => {
@@ -74,8 +73,9 @@ class ProductCard extends Component {
             data-testid="product-add-to-cart"
             className="button-product"
             onClick={ () => {
-              numberCarrinho();
               this.handleAddToCartAndStorage(product);
+              this.handleNumberCarrinho();
+              numberCarrinho();
             } }
           >
             Adicionar ao Carrinho

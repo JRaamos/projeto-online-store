@@ -1,0 +1,15 @@
+.header {
+  align-items: center;
+  background-color: rgba(61, 97, 241, 0.95);
+  border: solid 1px rgb(31, 29, 29);
+  border-radius: 0 0 15px 15px;
+  box-shadow: 1px 1px 15px black;
+  display: flex;
+  height: 65px;
+  justify-content: space-around;
+  left: 0;
+  padding-top: 15px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}

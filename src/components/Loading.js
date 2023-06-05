@@ -1,10 +1,13 @@
 import { Component } from 'react';
+import './Loading.css';
 
 class Loading extends Component {
   render() {
     return (
       <div>
-        <h1> Loading...</h1>
+        <h1>
+          <div className="spinner is-animating" />
+        </h1>
       </div>
     );
   }

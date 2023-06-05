@@ -1,0 +1,42 @@
+.main-checkout {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-top: 100px;
+}
+
+.producto-checkout {
+  display: grid;
+  grid-auto-rows: 200px;
+  grid-template-columns: repeat(2, 400px);
+}
+
+.card-checkout {
+  border: solid 1px black;
+  border-radius: 15px;
+  box-shadow: 1px 6px 12px black;
+  display: flex;
+  margin: 10px;
+  padding: 10px;
+}
+
+.img-checkout {
+  border-radius: 7px;
+  box-shadow: 1px 6px 12px black;
+  width: 100%;
+}
+
+.form-checkout {
+  display: grid;
+  grid-auto-rows: 50px;
+  grid-template-columns: repeat(2, 400px);
+}
+
+.label-checkout {
+  border-radius: 8px;
+  box-shadow: 1px 1px 10px black;
+  color: black;
+  height: 30px;
+  margin: 10px;
+  width: 320px;
+}

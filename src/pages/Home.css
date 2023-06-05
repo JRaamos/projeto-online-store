@@ -46,6 +46,7 @@
 .btn-group {
   margin-left: 93%;
   position: absolute;
+
 }
 
 .carrinho-numero {
@@ -71,9 +72,11 @@
   background-color: rgba(254, 255, 255);
   border: solid 1px rgb(45, 45, 140);
   border-radius: 7px;
+  box-shadow: 1px 1px 20px black;
   color: black;
   height: 30px;
   width: 60px;
+
 }
 
 .btn-form:hover {

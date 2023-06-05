@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
+import './Checkout.css';
 
 class Checkout extends Component {
   state = {
@@ -11,7 +12,6 @@ class Checkout extends Component {
     cep: '',
     endereco: '',
     pagamentos: '',
-    validador: [],
   };
 
   componentDidMount() {
@@ -32,35 +32,45 @@ class Checkout extends Component {
     const { history } = this.props;
     const { fullname, email, cpf, telefone, cep, endereco, pagamentos } = this.state;
     if (fullname && email && cpf && telefone && endereco && cep && pagamentos) {
-      this.setState({ validador: true });
       localStorage.removeItem('cartItems');
       history.push('/');
-    } else {
-      this.setState({ validador: false });
     }
   };
 
   render() {
-    const { product, validador } = this.state;
+    const { product } = this.state;
     return (
       <div>
-        {
-          product.map(({ title }) => (
-            <div key={ title }>
-              <p>
-                { title }
-              </p>
-            </div>
-          ))
-        }
-        <fieldset>
+        <header className="header-carrinho " />
+        <main className="main-checkout">
+          <div className="producto-checkout">
+            {
+              product.map(({ title, thumbnail }) => (
+                <div
+                  className="card-checkout"
+                  key={ title }
+                >
+                  <p>
+                    { title }
+                  </p>
+                  <img
+                    src={ thumbnail }
+                    alt={ title }
+                    className="img-checkout"
+                  />
+                </div>
+              ))
+            }
+          </div>
           <form
+            className="form-checkout"
             onSubmit={ (e) => {
               e.preventDefault();
             } }
           >
             <label>
               <input
+                className="label-checkout"
                 required
                 type="text"
                 name="fullname"
@@ -72,6 +82,7 @@ class Checkout extends Component {
             <label>
               <input
                 required
+                className="label-checkout"
                 type="email"
                 name="email"
                 placeholder="Email"
@@ -82,6 +93,7 @@ class Checkout extends Component {
             </label>
             <label>
               <input
+                className="label-checkout"
                 required
                 type="text"
                 name="cpf"
@@ -93,6 +105,7 @@ class Checkout extends Component {
             </label>
             <label>
               <input
+                className="label-checkout"
                 required
                 type="text"
                 name="telefone"
@@ -104,64 +117,93 @@ class Checkout extends Component {
             </label>
             <label>
               <input
+                className="label-checkout"
                 required
                 type="text"
                 name="cep"
                 placeholder="CEP"
                 data-testid="checkout-cep"
                 onChange={ this.onInputChang }
-
               />
             </label>
             <label>
               <input
+                className="label-checkout"
                 required
                 type="text"
                 name="endereco"
                 placeholder="Endereço"
                 data-testid="checkout-address"
                 onChange={ this.onInputChang }
-
               />
             </label>
-            <label value="pagamentos">
+            <label
+              value="pagamentos"
+              className="img-pagamentos"
+            >
               <input
+                style={ { display: 'none' } }
                 required
+                className="pagamentos"
                 type="radio"
                 name="pagamentos"
                 value="boleto"
                 data-testid="ticket-payment"
                 onChange={ this.onInputChang }
-
               />
-              Boleto
+              <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8F8IPBBNCLerijhazilvggGF_O97kAG9qrC2n3C85SPczKMbvPpoH2lGoXMKmW9ZT8Ys&usqp=CAU"
+                alt="boleto"
+                className="img-pagamentos"
+              />
             </label>
-            <label value="pagamentos">
+            <label
+              value="pagamentos"
+              className="img-pagamentos"
+            >
               <input
+                style={ { display: 'none' } }
+                className="pagamentos"
                 required
                 type="radio"
                 name="pagamentos"
                 value="visa"
                 data-testid="visa-payment"
                 onChange={ this.onInputChang }
-
               />
-              Visa
+              <img
+                src="https://cdn.iconscout.com/icon/free/png-256/free-visa-7-282549.png"
+                alt="visa"
+                className="img-pagamentos"
+              />
             </label>
-            <label value="pagamentos">
+            <label
+              value="pagamentos"
+              className="img-pagamentos"
+            >
               <input
+                style={ { display: 'none' } }
+                className="pagamentos"
                 required
                 type="radio"
                 name="pagamentos"
                 value="master"
                 data-testid="master-payment"
                 onChange={ this.onInputChang }
-
               />
-              Master
+              <img
+                src="https://cdn.iconscout.com/icon/free/png-256/free-mastercard-11-282395.png"
+                alt="master-card"
+                className="img-pagamentos"
+              />
             </label>
-            <label value="pagamentos">
+            <label
+              value="pagamentos"
+              className="img-pagamentos"
+            >
               <input
+                style={ { display: 'none' } }
+                className="pagamentos"
                 required
                 type="radio"
                 name="pagamentos"
@@ -170,22 +212,24 @@ class Checkout extends Component {
                 onChange={ this.onInputChang }
 
               />
-              Elo
+              <img
+                src="https://logospng.org/download/cartao-elo/logo-cartao-elo-colorido-fundo-preto-256.png"
+                alt="elo"
+                className="img-pagamentos"
+              />
             </label>
-            {
-              !validador
-              && <p data-testid="error-msg"> Campos inválidos </p>
-            }
-            <button
-              type="submit"
-              data-testid="checkout-btn"
-              onClick={ this.validator }
-            >
-              Enviar
-            </button>
+            <div>
+              <button
+                type="submit"
+                data-testid="checkout-btn"
+                onClick={ this.validator }
+              >
+                Enviar
+              </button>
+            </div>
           </form>
-        </fieldset>
 
+        </main>
       </div>
     );
   }
