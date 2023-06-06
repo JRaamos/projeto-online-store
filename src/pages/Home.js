@@ -70,6 +70,9 @@ class Home extends Component {
   numberCarrinho = () => {
     const numero = JSON.parse(localStorage.getItem('numero'));
     this.setState({ numeroCarrinho: numero });
+    if (!numero) {
+      this.setState({ numeroCarrinho: 0 });
+    }
   };
 
   render() {

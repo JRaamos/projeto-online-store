@@ -1,14 +1,13 @@
 .main-checkout {
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-around;
-  margin-top: 100px;
+  margin-top: 110px;
 }
 
 .producto-checkout {
   display: grid;
-  grid-auto-rows: 200px;
-  grid-template-columns: repeat(2, 400px);
+  grid-auto-rows: 150px;
+  grid-template-columns: repeat(2, 350px);
 }
 
 .card-checkout {
@@ -23,20 +22,97 @@
 .img-checkout {
   border-radius: 7px;
   box-shadow: 1px 6px 12px black;
-  width: 100%;
 }
 
 .form-checkout {
-  display: grid;
-  grid-auto-rows: 50px;
-  grid-template-columns: repeat(2, 400px);
+  align-items: center;
+  border: solid 1px black;
+  border-radius: 15px;
+  box-shadow: 1px 6px 12px black;
+  display: flex;
+  flex-direction: column;
+  height: 500px;
+  margin-top: 10px;
+  padding-bottom: 20px;
+  width: 900px;
+}
+
+.contain-checkout {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+}
+
+.pagamentos-checkout {
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 
 .label-checkout {
+  border: solid 1px rgb(5, 5, 5);
   border-radius: 8px;
   box-shadow: 1px 1px 10px black;
   color: black;
-  height: 30px;
+  height: 25px;
   margin: 10px;
-  width: 320px;
+  padding: 2px 5px;
+  width: 250px;
+
+}
+
+.label-checkout:hover {
+  border: solid 1px blue;
+}
+
+.img-pagamentos {
+  border: solid 1px white;
+  border-radius: 8px;
+  box-shadow: 1px 1px 10px black;
+  height: 100px;
+  margin: 0 15px;
+  padding: 10px;
+  width: 100px;
+}
+
+.img-pagamentos:hover {
+  border: solid 1px blue;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+
+.button-contain {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  width: 100%;
+}
+
+.button-checkout {
+  background-color: rgba(254, 255, 255);
+  border: solid 2px rgb(21, 21, 25);
+  border-radius: 7px;
+  box-shadow: 1px 1px 10px black;
+  color: black;
+  height: 28px;
+  margin: 3px;
+  padding: 2px 5px;
+  width: 200px;
+}
+
+.button-checkout:hover {
+  background-color: rgba(61, 97, 241, 0.95);
+  cursor: pointer;
+
+}
+
+.mensagem-checkout {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 25px;
+  margin-top: 120px;
 }

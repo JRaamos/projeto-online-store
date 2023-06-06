@@ -13,11 +13,15 @@ class Carrinho extends Component {
 
   componentDidMount() {
     const products = JSON.parse(localStorage.getItem('cartItems'));
-    if (products) {
+    if (products.length !== 0) {
       this.setState({ ids: products });
     }
     const numero = JSON.parse(localStorage.getItem('numero'));
-    this.setState({ quantidadeDeProduto: numero });
+    if (!numero) {
+      this.setState({ quantidadeDeProduto: 0 });
+    } else {
+      this.setState({ quantidadeDeProduto: numero });
+    }
     this.handlePriceCarrinho();
   }
 
@@ -125,7 +129,6 @@ class Carrinho extends Component {
             ) : (
               <main className="carrinho-contain">
                 <div className="carrinho">
-
                   <h2>Produtos</h2>
                   <div>
                     {

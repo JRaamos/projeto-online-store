@@ -1,6 +1,5 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import './ProductCard.css';
 
 class ProductCard extends Component {
@@ -40,7 +39,7 @@ class ProductCard extends Component {
   };
 
   render() {
-    const { img, name, price, id, product, numberCarrinho } = this.props;
+    const { img, name, price, product, numberCarrinho } = this.props;
     return (
 
       <div
@@ -48,24 +47,17 @@ class ProductCard extends Component {
         className="card"
       >
         <div className="div">
-          <Link
-            data-testid="product-detail-link"
-            to={ `/details/${id}` }
-            className="div"
-          >
-
-            <img
-              className="img-product"
-              src={ img }
-              alt={ name }
-            />
-            <p
-              className="link-body-emphasis link-offset-2
+          <img
+            className="img-product"
+            src={ img }
+            alt={ name }
+          />
+          <p
+            className="link-body-emphasis link-offset-2
                link-underline-opacity-25 link-underline-opacity-75-hover"
-            >
-              {name}
-            </p>
-          </Link>
+          >
+            {name}
+          </p>
           <p>{`R$ ${price.toFixed(2)}`}</p>
 
           <button
