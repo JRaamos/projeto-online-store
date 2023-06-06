@@ -1,0 +1,141 @@
+body {
+  background-color: rgb(238, 238, 238);
+  padding-bottom: 30px;
+}
+
+.header-carrinho {
+  align-items: center;
+  background-color: rgba(61, 97, 241, 0.95);
+  border: solid 1px rgb(31, 29, 29);
+  border-radius: 0 0 20px 20px;
+  box-shadow: 1px 1px 15px black;
+  display: flex;
+  height: 80px;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.button-back {
+  border-radius: 7px;
+  box-shadow: 1px 1px 10px black;
+  height: 30px;
+  margin-left: 25px;
+  width: 40px;
+}
+
+.button-back:hover {
+  border: solid 1px blue;
+  cursor: pointer;
+}
+
+.carrinho-contain {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.carrinho {
+  align-items: center;
+  border: solid 1px black;
+  border-radius: 7px;
+  box-shadow: 1px 1px 10px black;
+  display: flex;
+  flex-direction: column;
+  margin-left: -28%;
+  margin-top: 100px;
+  padding-bottom: 40px;
+  width: 60%;
+}
+
+
+.cards-carrinho {
+  align-items: center;
+  background-color: rgb(253, 253, 253);
+  border-radius: 7px;
+  box-shadow: 1px 1px 10px black;
+  display: flex;
+  flex-direction: column;
+  margin-top: 15px;
+  padding: 10px;
+}
+
+.card-carrinho {
+  align-items: center;
+  display: flex;
+}
+
+.button-carrinho {
+  background-color: rgba(254, 255, 255);
+  border: solid 2px rgb(21, 21, 25);
+  border-radius: 7px;
+  box-shadow: 1px 1px 10px black;
+  color: black;
+  margin: 3px;
+}
+
+
+.button-carrinho:hover {
+  background-color: rgba(61, 97, 241, 0.95);
+  cursor: pointer;
+}
+
+.h3 {
+  align-items: center;
+  display: flex;
+}
+
+.img-carrinho {
+  margin-right: 50px;
+  padding: 10px;
+  width: 130px;
+}
+
+.carrinho-resulmo {
+  align-items: center;
+  background-color: rgb(253, 253, 253);
+  border: solid 1px black;
+  border-radius: 7px;
+  box-shadow: 1px 1px 10px black;
+  display: flex;
+  flex-direction: column;
+  height: 250px;
+  justify-content: space-between;
+  margin-left: 66%;
+  margin-top: 100px;
+  padding-bottom: 15px;
+  position: fixed;
+  width: 400px;
+}
+
+.resulmo-compra {
+  display: flex;
+  justify-content: space-between;
+  margin-top: -40px;
+  width: 350px;
+}
+
+.direcionamento {
+  margin-left: 25px;
+  margin-top: 100px;
+
+}
+
+@media ( max-width : 1550px ) {
+
+  .carrinho {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 100px 30px;
+    margin-left: 0;
+    width: 900px;
+
+  }
+
+  .carrinho-resulmo {
+    margin-left: 0;
+    position: static;
+  }
+
+}

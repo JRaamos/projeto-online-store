@@ -1,0 +1,22 @@
+.spinner {
+  border: 5px solid #e2e2e2;
+  border-left-color: #0c9;
+  border-radius: 100%;
+  height: 50px;
+  width: 50px;
+}
+
+@keyframes loading {
+
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.spinner.is-animating {
+  animation: loading 1s linear infinite;
+}
